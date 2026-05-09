@@ -1,9 +1,7 @@
-<%= form_with(model: post, class: "contents") do |form| %>
+<%= form_with(model: post, class: "space-y-6") do |form| %>
   <% if post.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul class="list-disc ml-6">
+    <div class="bg-red-50 text-red-600 px-4 py-3 rounded-md text-sm">
+      <ul class="list-disc ml-4">
         <% post.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -11,17 +9,18 @@
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": post.errors[:title].none?, "border-red-400 focus:outline-red-600": post.errors[:title].any?}] %>
+  <div>
+    <%= form.label :title, class: "block text-sm font-semibold text-gray-900 mb-2" %>
+    <%= form.text_field :title, placeholder: "Title", class: "w-full text-3xl font-bold text-gray-900 placeholder-gray-300 border-0 border-b-2 border-gray-200 focus:border-gray-900 focus:ring-0 px-0 py-3 bg-transparent" %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :content %>
-    <%= form.textarea :content, rows: 4, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": post.errors[:content].none?, "border-red-400 focus:outline-red-600": post.errors[:content].any?}] %>
+  <div>
+    <%= form.label :content, class: "block text-sm font-semibold text-gray-900 mb-2" %>
+    <%= form.text_area :content, placeholder: "Tell your story...", rows: 20, class: "w-full text-gray-700 placeholder-gray-400 border border-gray-200 rounded-md focus:border-gray-900 focus:ring-0 p-4 resize-none" %>
   </div>
 
-  <div class="inline">
-    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+  <div class="flex items-center justify-between pt-4">
+    <%= link_to "Cancel", posts_path, class: "text-gray-500 hover:text-gray-700 text-sm font-medium" %>
+    <%= form.submit class: "px-6 py-2 text-sm font-medium text-white bg-green-600 rounded-full hover:bg-green-500 cursor-pointer" %>
   </div>
 <% end %>

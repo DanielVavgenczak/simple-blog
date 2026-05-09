@@ -11,21 +11,37 @@
 
     <%= yield :head %>
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="bg-white text-gray-900 font-sans antialiased">
+    <header class="border-b border-gray-200">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <%= link_to "Simple Blog", posts_path, class: "text-xl font-bold text-gray-900 hover:text-gray-700" %>
+          <nav class="flex items-center space-x-4">
+            <%= link_to "Posts", posts_path, class: "text-sm font-medium text-gray-600 hover:text-gray-900" %>
+            <%= link_to "New Post", new_post_path, class: "px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded-full hover:bg-gray-800" %>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <%= yield %>
     </main>
+
+    <footer class="border-t border-gray-200 mt-16">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <p class="text-center text-sm text-gray-500">Simple Blog</p>
+      </div>
+    </footer>
   </body>
 </html>
