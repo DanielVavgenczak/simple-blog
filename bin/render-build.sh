@@ -1,8 +1,23 @@
 #!/usr/bin/env bash
-# exit on error
 set -o errexit
+
+echo "=== Ruby version ==="
+ruby --version
+
+echo "=== Bundler version ==="
+bundle --version
+
+echo "=== Installing gems ==="
 bundle install
-./bin/rails assets:precompile
-./bin/rails assets:clean
+
+echo "=== Checking bundle ==="
+bundle check
+
+echo "=== Precompiling assets ==="
+bundle exec rails assets:precompile
+bundle exec rails assets:clean
+
+echo "=== Running migrations ==="
 bundle exec rails db:migrate
-bundle exec rails db:seed
+
+echo "=== Build complete ==="
