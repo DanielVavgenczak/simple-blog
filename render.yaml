@@ -1,7 +1,7 @@
 databases:
   - name: simple_blog_production
     databaseName: simple_blog_production
-    user: Daniel
+    user: daniel
     plan: free
 
 services:
